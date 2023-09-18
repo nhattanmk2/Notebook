@@ -35,8 +35,8 @@ public class ListWord extends Fragment {
     RecyclerView TopRecyclerView, TitleRecyclerView;
     ForTopRV TopRecyclerViewAdapter;
     ForTitleRV TitleRecyclerViewAdapter;
-    FloatingActionButton fab;
-    boolean statusFab = true;
+//    FloatingActionButton fab;
+//    boolean statusFab = true;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,12 +55,12 @@ public class ListWord extends Fragment {
         super.onViewCreated(view, saveInstanceState);
         TopRecyclerView = view.findViewById(R.id.topRecyclerView);
         TitleRecyclerView = view.findViewById(R.id.titleRecyclerView);
-        fab = view.findViewById(R.id.fab);
+//        fab = view.findViewById(R.id.fab);
         dataInitializeForTop();
         dataInitializeForTitle();
         LoadTitleRV();
         LoadTopRV();
-        ActionFab();
+//        ActionFab();
     }
 
     public void LoadTopRV() {
@@ -110,30 +110,30 @@ public class ListWord extends Fragment {
             }
         });
     }
-    public void ActionFab() {
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                statusFab = !statusFab;
-                if (statusFab) {
-                    fab.setImageResource(R.drawable.baseline_arrow_drop_down_24);
-                    if (TitleRecyclerViewAdapter.getViewHolderList().size() > TopRecyclerViewAdapter.getStatus()) {
-                        ForTitleRV.ViewHolder viewHolder = TitleRecyclerViewAdapter.getViewHolderList().get(TopRecyclerViewAdapter.getStatus());
-                        viewHolder.itemView.findViewById(R.id.itemTitleRecyclerView).setVisibility(View.VISIBLE);
-                    }
-                } else {
-                    fab.setImageResource(R.drawable.baseline_arrow_drop_up_24);
-
-                    Log.d("8", "onClick: " + TitleRecyclerViewAdapter.getViewHolderList().size());
-                    if (TitleRecyclerViewAdapter.getViewHolderList().size() > TopRecyclerViewAdapter.getStatus()) {
-                            ForTitleRV.ViewHolder viewHolder = TitleRecyclerViewAdapter.getViewHolderList().get(TopRecyclerViewAdapter.getStatus());
-                            viewHolder.itemView.findViewById(R.id.itemTitleRecyclerView).setVisibility(View.GONE);
-                    }
-
-                }
-            }
-        });
-    }
+//    public void ActionFab() {
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                statusFab = !statusFab;
+//                if (statusFab) {
+//                    fab.setImageResource(R.drawable.baseline_arrow_drop_down_24);
+//                    if (TitleRecyclerViewAdapter.getViewHolderList().size() > TopRecyclerViewAdapter.getStatus()) {
+//                        ForTitleRV.ViewHolder viewHolder = TitleRecyclerViewAdapter.getViewHolderList().get(TopRecyclerViewAdapter.getStatus());
+//                        viewHolder.itemView.findViewById(R.id.itemTitleRecyclerView).setVisibility(View.VISIBLE);
+//                    }
+//                } else {
+//                    fab.setImageResource(R.drawable.baseline_arrow_drop_up_24);
+//
+//                    Log.d("8", "onClick: " + TitleRecyclerViewAdapter.getViewHolderList().size());
+//                    if (TitleRecyclerViewAdapter.getViewHolderList().size() > TopRecyclerViewAdapter.getStatus()) {
+//                            ForTitleRV.ViewHolder viewHolder = TitleRecyclerViewAdapter.getViewHolderList().get(TopRecyclerViewAdapter.getStatus());
+//                            viewHolder.itemView.findViewById(R.id.itemTitleRecyclerView).setVisibility(View.GONE);
+//                    }
+//
+//                }
+//            }
+//        });
+//    }
 
     public void dataInitializeForTop() {
         headers.add("Title 1");

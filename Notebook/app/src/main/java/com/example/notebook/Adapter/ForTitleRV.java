@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.notebook.Model.Item_Word;
 import com.example.notebook.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,9 @@ import java.util.List;
 public class ForTitleRV extends RecyclerView.Adapter<ForTitleRV.ViewHolder> {
 
     List<List<Item_Word>> childData;
+    List<Boolean> actionFab = new ArrayList<>();
     private List<ViewHolder> viewHolderList = new ArrayList<>();
+
     public ForTitleRV(List<List<Item_Word>> childData) {
         this.childData = childData;
 
@@ -32,7 +35,9 @@ public class ForTitleRV extends RecyclerView.Adapter<ForTitleRV.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_title_rv_fragment_list_word, parent, false);
         ViewHolder holder = new ViewHolder(view);
-        viewHolderList.add(holder); // Thêm holder vào viewHolderList
+        viewHolderList.add(holder);
+        actionFab.add(false);
+        // Thêm holder vào viewHolderList
         return holder;
     }
 
@@ -45,7 +50,23 @@ public class ForTitleRV extends RecyclerView.Adapter<ForTitleRV.ViewHolder> {
         holder.childForTitleRV = new ChildForTitleRV(childItems);
 
         holder.childRecyclerView.setAdapter(holder.childForTitleRV);
-
+        holder.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (actionFab.get(position) != null) {
+                    actionFab.set(position, !actionFab.get(position));
+                    if (actionFab.get(position)) {
+                        holder.fab.setImageResource(R.drawable.baseline_arrow_drop_up_24);
+                        holder.itemView.findViewById(R.id.itemTitleRecyclerView).setVisibility(View.GONE);
+                    }
+                    else {
+                        holder.fab.setImageResource(R.drawable.baseline_arrow_drop_down_24);
+                        holder.itemView.findViewById(R.id.itemTitleRecyclerView).setVisibility(View.VISIBLE);
+                    }
+                    notifyDataSetChanged();
+                }
+            }
+        });
 //        viewHolderList.add(holder);
         holder.childForTitleRV.notifyDataSetChanged();
     }
@@ -55,11 +76,13 @@ public class ForTitleRV extends RecyclerView.Adapter<ForTitleRV.ViewHolder> {
         return childData.size();
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         RecyclerView childRecyclerView;
         ChildForTitleRV childForTitleRV;
         TextView textView;
+        FloatingActionButton fab;
         public int item() {
             return childForTitleRV.getItemCount();
         }
@@ -67,6 +90,7 @@ public class ForTitleRV extends RecyclerView.Adapter<ForTitleRV.ViewHolder> {
             super(itemView);
             textView = itemView.findViewById(R.id.headerItem);
             childRecyclerView = itemView.findViewById(R.id.itemTitleRecyclerView);
+            fab = itemView.findViewById(R.id.itemTitleFab);
             childRecyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
         }
     }
