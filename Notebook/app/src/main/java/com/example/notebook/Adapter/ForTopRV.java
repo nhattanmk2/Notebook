@@ -114,7 +114,7 @@ public class ForTopRV extends RecyclerView.Adapter<ForTopRV.ViewHolder> {
                 header_item.setBackgroundResource(R.drawable.hightlight_item_top_rv_fragment_list_word);
             } else {
                 header_item.setTextColor(Color.BLACK);
-                header_item.setBackgroundResource(android.R.color.white);
+                header_item.setBackgroundResource(R.drawable.right_border);
             }
         }
     }

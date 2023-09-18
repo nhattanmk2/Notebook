@@ -3,32 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp" >
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="70dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/border_item_1"
+            android:padding="8dp" >
 
             <TextView
                 android:id="@+id/headerItem"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
+                android:background="@drawable/right_border"
                 android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
+                android:layout_marginLeft="8dp"
                 android:textSize="20sp" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/itemTitleFab"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_margin="16dp"
+
                 android:layout_weight="1"
                 android:scaleType="fitCenter"
                 app:maxImageSize="40dp"
@@ -39,6 +42,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itemTitleRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:padding="3dp"/>
 
 </LinearLayout>

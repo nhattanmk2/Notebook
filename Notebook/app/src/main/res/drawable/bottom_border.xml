@@ -10,18 +10,18 @@
             <solid android:color="@color/white"/>
         </shape>
     </item>
-    <item android:left="1dp" android:top="3dp">
+    <item android:left="1dp" android:top="1dp">
         <shape android:shape="rectangle">
-            <solid android:color="#45a9da"/>
+            <solid android:color="@color/white"/>
         </shape>
     </item>
 
-    <item android:left="1dp" android:top="1dp" android:right="1dp">
+    <item android:left="1dp" android:top="1dp" android:right="3dp">
         <shape android:shape="rectangle">
-            <solid android:color="#CCCCCC"/>
+            <solid android:color="#6ec8e9"/>
         </shape>
     </item>
-    <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="3dp">
+    <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp">
         <shape android:shape="rectangle">
             <solid android:color="@color/white"/>
         </shape>
