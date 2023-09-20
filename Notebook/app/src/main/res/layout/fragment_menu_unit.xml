@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".Fragment.ListWord">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/menuRC"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="8dp">
+
+        <LinearLayout
+            android:id="@+id/createProject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/create" />
+
+            <TextView
+                android:id="@+id/createText"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:layout_margin="3dp"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:text="Create new project " />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

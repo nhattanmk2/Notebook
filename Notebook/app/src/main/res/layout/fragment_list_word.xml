@@ -8,13 +8,14 @@
     tools:context=".Fragment.ListWord">
 
 
+    <!-- RecyclerView thứ hai -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/topRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/top_bot_border"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <!-- RecyclerView thứ hai -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/titleRecyclerView"
         android:layout_width="match_parent"

@@ -1,6 +1,8 @@
 package com.example.notebook.Adapter;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +44,7 @@ public class ForTitleRV extends RecyclerView.Adapter<ForTitleRV.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         //Set Item chủ đề tương đương với Item trong ForTopRV
         List<Item_Word> childItems = childData.get(position);
 
@@ -50,6 +52,12 @@ public class ForTitleRV extends RecyclerView.Adapter<ForTitleRV.ViewHolder> {
         holder.childForTitleRV = new ChildForTitleRV(childItems);
 
         holder.childRecyclerView.setAdapter(holder.childForTitleRV);
+        //Thay đổi dữ liệu từ con
+        childData.set(position, holder.childForTitleRV.getChildData());
+        for (int i = 0; i < childData.get(position).size(); ++ i) {
+            Log.d("22", "onBindViewHolder: " + position + " " + i + " " + childData.get(position).get(i).isStatus());
+        }
+        holder.childForTitleRV.notifyDataSetChanged();
         holder.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,12 +71,11 @@ public class ForTitleRV extends RecyclerView.Adapter<ForTitleRV.ViewHolder> {
                         holder.fab.setImageResource(R.drawable.baseline_arrow_drop_down_24);
                         holder.itemView.findViewById(R.id.itemTitleRecyclerView).setVisibility(View.VISIBLE);
                     }
-                    notifyDataSetChanged();
+//                    notifyDataSetChanged();
                 }
             }
         });
-//        viewHolderList.add(holder);
-        holder.childForTitleRV.notifyDataSetChanged();
+
     }
 
     @Override

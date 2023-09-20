@@ -60,6 +60,27 @@ public class ListWord extends Fragment {
         dataInitializeForTitle();
         LoadTitleRV();
         LoadTopRV();
+//        listView1Data.add(new Item_Word("Item_Word 1.3"));
+//        listView1Data.add(new Item_Word("Item_Word 1.3"));
+//        childData.set(0, listView1Data);
+//
+//        List<Item_Word> listView5Data = new ArrayList<>();
+//        listView5Data.add(new Item_Word("Item_Word 5.3"));
+//        listView5Data.add(new Item_Word("Item_Word 5.3"));
+//        listView5Data.add(new Item_Word("Item_Word 5.3"));
+//        listView5Data.add(new Item_Word("Item_Word 5.3"));
+//        listView5Data.add(new Item_Word("Item_Word 5.3"));
+//        listView5Data.add(new Item_Word("Item_Word 5.3"));
+//        listView5Data.add(new Item_Word("Item_Word 5.3"));
+//        listView5Data.add(new Item_Word("Item_Word 5.3"));
+//        childData.add(listView5Data);
+//        List<Item_Word> listView6Data = new ArrayList<>();
+//        listView6Data.add(new Item_Word("Item_Word 6.3"));
+//        listView6Data.add(new Item_Word("Item_Word 6.3"));
+//        listView6Data.add(new Item_Word("Item_Word 6.3"));
+//        listView6Data.add(new Item_Word("Item_Word 6.3"));
+//        childData.add(listView6Data);
+//        Log.d("9999", "onViewCreated: " + childData.size());
 //        ActionFab();
     }
 
@@ -82,7 +103,7 @@ public class ListWord extends Fragment {
         TitleRecyclerView.setAdapter(TitleRecyclerViewAdapter);
 //        TitleRecyclerView.smoothScrollToPosition(TopRecyclerViewAdapter.getOnClick());
         TitleRecyclerViewAdapter.notifyDataSetChanged();
-
+//        Log.d("9999", "onViewCreated: " + childData.size());
         TitleRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -93,9 +114,9 @@ public class ListWord extends Fragment {
                 View firstVisibleItemView = layoutManager.findViewByPosition(firstVisibleItemPosition);
                 int itemTop = firstVisibleItemView.getTop();
                 int itemBottom = firstVisibleItemView.getBottom();
-                Log.d("3", "LoadTitleRV: " + firstVisibleItemPosition + " " + itemTop + " " + itemBottom);
+//                Log.d("3", "LoadTitleRV: " + firstVisibleItemPosition + " " + itemTop + " " + itemBottom);
                 int recyclerViewHeight = recyclerView.getHeight();
-                Log.d("4", "LoadTitleRV: " + recyclerViewHeight);
+//                Log.d("4", "LoadTitleRV: " + recyclerViewHeight);
                 if (itemTop < 0) itemTop = Math.abs(itemTop);
                 int viewHeight = itemTop + itemBottom;
                 double visiblePercentage = (double) itemBottom / recyclerViewHeight;
@@ -136,7 +157,7 @@ public class ListWord extends Fragment {
 //    }
 
     public void dataInitializeForTop() {
-        headers.add("Title 1");
+        headers.add("Titlđasdsesds 1");
         headers.add("Title 2");
         headers.add("Title 3");
         headers.add("Title 4");
@@ -152,36 +173,36 @@ public class ListWord extends Fragment {
 
     public void dataInitializeForTitle() {
 
-        listView1Data.add(new Item_Word("Item_Word 1.1"));
-        listView1Data.add(new Item_Word("Item_Word 1.2"));
-        listView1Data.add(new Item_Word("Item_Word 1.3"));
-        listView1Data.add(new Item_Word("Item_Word 1.3"));
+        listView1Data.add(new Item_Word("Item_Word 1.1", false));
+        listView1Data.add(new Item_Word("Item_Word 1.2", false));
+        listView1Data.add(new Item_Word("Item_Word 1.3", false));
+        listView1Data.add(new Item_Word("Item_Word 1.3", false));
         childData.add(listView1Data);
 
 // Tạo bộ dữ liệu cho ListView 2
         List<Item_Word> listView2Data = new ArrayList<>();
-        listView2Data.add(new Item_Word("Item_Word 2.1"));
-        listView2Data.add(new Item_Word("Item_Word 2.2"));
-        listView2Data.add(new Item_Word("Item_Word 2.3"));
-        listView2Data.add(new Item_Word("Item_Word 2.3"));
-        listView2Data.add(new Item_Word("Item_Word 2.3"));
+        listView2Data.add(new Item_Word("Item_Word 2.1", false));
+        listView2Data.add(new Item_Word("Item_Word 2.2", false));
+        listView2Data.add(new Item_Word("Item_Word 2.3", false));
+        listView2Data.add(new Item_Word("Item_Word 2.3", false));
+        listView2Data.add(new Item_Word("Item_Word 2.3", false));
         childData.add(listView2Data);
 
 // Tạo bộ dữ liệu cho ListView 3
         List<Item_Word> listView3Data = new ArrayList<>();
-        listView3Data.add(new Item_Word("Item_Word 3.1"));
-        listView3Data.add(new Item_Word("Item_Word 3.2"));
-        listView3Data.add(new Item_Word("Item_Word 3.3"));
+        listView3Data.add(new Item_Word("Item_Word 3.1", false));
+        listView3Data.add(new Item_Word("Item_Word 3.2", false));
+        listView3Data.add(new Item_Word("Item_Word 3.3", false));
         childData.add(listView3Data);
 
         List<Item_Word> listView4Data = new ArrayList<>();
-        listView4Data.add(new Item_Word("Item_Word 4.1"));
-        listView4Data.add(new Item_Word("Item_Word 4.2"));
-        listView4Data.add(new Item_Word("Item_Word 4.3"));
-        listView4Data.add(new Item_Word("Item_Word 4.3"));
-        listView4Data.add(new Item_Word("Item_Word 4.3"));
-        listView4Data.add(new Item_Word("Item_Word 4.3"));
-        listView4Data.add(new Item_Word("Item_Word 4.3"));
+        listView4Data.add(new Item_Word("Item_Word 4.1", false));
+        listView4Data.add(new Item_Word("Item_Word 4.2", false));
+        listView4Data.add(new Item_Word("Item_Word 4.3", false));
+        listView4Data.add(new Item_Word("Item_Word 4.3", false));
+        listView4Data.add(new Item_Word("Item_Word 4.3", false));
+        listView4Data.add(new Item_Word("Item_Word 4.3", false));
+        listView4Data.add(new Item_Word("Item_Word 4.3", false));
         childData.add(listView4Data);
     }
 }

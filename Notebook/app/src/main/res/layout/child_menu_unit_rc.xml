@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
+    app:cardElevation="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="3">
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="Main topic"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/dic"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="2">
+            <TextView
+                android:id="@+id/text_words"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="Words: "
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/text_author"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="Author: "
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/text_date_create"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="Date created:"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/text_date_change"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="Date change"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

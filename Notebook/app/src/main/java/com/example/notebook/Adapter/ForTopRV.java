@@ -2,6 +2,7 @@ package com.example.notebook.Adapter;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -110,11 +111,15 @@ public class ForTopRV extends RecyclerView.Adapter<ForTopRV.ViewHolder> {
         }
         private void updateItemAppearance() {
             if (isClicked) {
-                header_item.setTextColor(Color.BLUE);
+                header_item.setTextColor(Color.DKGRAY);
                 header_item.setBackgroundResource(R.drawable.hightlight_item_top_rv_fragment_list_word);
+                Typeface customTypeface = Typeface.createFromAsset(header_item.getContext().getAssets(), "font/prompt.ttf");
+                header_item.setTypeface(customTypeface);
             } else {
                 header_item.setTextColor(Color.BLACK);
                 header_item.setBackgroundResource(R.drawable.right_border);
+                Typeface customTypeface = Typeface.createFromAsset(header_item.getContext().getAssets(), "font/mukta.ttf");
+                header_item.setTypeface(customTypeface);
             }
         }
     }
