@@ -37,6 +37,8 @@ public class forFavouriteSearch extends RecyclerView.Adapter<forFavouriteSearch.
         this.listWord = listWord;
         this.listWordC = listWord;
     }
+
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -46,7 +48,7 @@ public class forFavouriteSearch extends RecyclerView.Adapter<forFavouriteSearch.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.word.setText(listWord.get(position).getId().toString());
+        holder.word.setText(listWord.get(position).getId());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

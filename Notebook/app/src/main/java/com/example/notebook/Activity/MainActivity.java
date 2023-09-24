@@ -11,6 +11,7 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,13 +36,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements ViewPagerInteractionListener {
     DrawerLayout drawerLayout;
     FloatingActionButton fab;
     BottomNavigationView bottomNavigationView;
     ViewPager2 viewPager2;
+    MainAViewPager adapterViewPager;
     ArrayList<Fragment> arrayList = new ArrayList<>();
+
     private ViewPagerInteractionListener interactionListener;
 
 
@@ -73,14 +77,13 @@ public class MainActivity extends AppCompatActivity implements ViewPagerInteract
     //Chèn phương thức Interface cho MainActivity
     @Override
     public void navigateToFragment(int position, Bundle args) {
-        // Gọi phương thức setCurrentItem() trên ViewPager2 để chuyển đến Fragment tại vị trí đã cho
-        viewPager2.setCurrentItem(position);
 
         // Lấy Fragment tại vị trí đã cho từ danh sách fragmentList
         Fragment fragment = arrayList.get(position);
-
-        // Gán tham số cho Fragment
         fragment.setArguments(args);
+        arrayList.set(position, fragment);
+        adapterViewPager.notifyItemChanged(position);
+        viewPager2.setCurrentItem(position);
     }
     public void CreateFragment() {
         viewPager2 = findViewById(R.id.viewPager);
@@ -88,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements ViewPagerInteract
         arrayList.add(new ListFavourite());
         arrayList.add(new EditUnit());
         arrayList.add(new MenuUnit());
-        MainAViewPager adapterViewPager = new MainAViewPager(this, arrayList);
+        adapterViewPager = new MainAViewPager(this, arrayList);
         viewPager2.setAdapter(adapterViewPager);
         FragmentOn();
     }

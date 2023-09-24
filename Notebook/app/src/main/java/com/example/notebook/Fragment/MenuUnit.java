@@ -83,12 +83,14 @@ public class MenuUnit extends Fragment {
                 popupWindow.setContentView(customView);
                 TextView textView = customView.findViewById(R.id.TitlePopup);
                 textView.setText("Do you want to choose " + item_header.getTitle() + "?");
+                //Chuyển sang giao diện chỉnh sửa và học
                 ImageView imageView = customView.findViewById(R.id.accept);
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Bundle args = new Bundle();
-                        args.putString("key", item_header.getAuthor());
+                        //getAuthor có thể chuyển thành ID đế tham số đến Item_Favourite, Item_Word
+                        args.putString("key", item_header.getTitle());
 
                         interactionListener.navigateToFragment(2, args);
                         popupWindow.dismiss();
@@ -219,11 +221,11 @@ public class MenuUnit extends Fragment {
 
     public void dataInitialize() {
         Item_Header itemHeader1 = new Item_Header("Animal", "Thanh Son", 4);
-        Item_Header itemHeader2 = new Item_Header("Animal", "Mai Linh", 4);
+        Item_Header itemHeader2 = new Item_Header("Tiger", "Mai Linh", 4);
         Item_Header itemHeader3 = new Item_Header("Animal", "Mai Hanh", 4);
-        Item_Header itemHeader4 = new Item_Header("Animal", "Mai Thuy", 4);
+        Item_Header itemHeader4 = new Item_Header("Tiger", "Mai Thuy", 4);
         Item_Header itemHeader5 = new Item_Header("Animal", "Vinh Ngo", 4);
-        Item_Header itemHeader6 = new Item_Header("Animal", "Be Son", 4);
+        Item_Header itemHeader6 = new Item_Header("Tiger", "Be Son", 4);
         Item_Header itemHeader7 = new Item_Header("Animal", "Be Linh", 4);
         item_headers.add(itemHeader1);
         item_headers.add(itemHeader2);

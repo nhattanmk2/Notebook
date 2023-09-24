@@ -15,9 +15,11 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.notebook.Interface.DataChangeListener;
 import com.example.notebook.Model.Item_Favourite;
 import com.example.notebook.Model.Item_Word;
 import com.example.notebook.R;
+import com.example.notebook.Thread.UpdateDataAsyncTask;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -27,6 +29,11 @@ import java.util.List;
 public class ForFavourite extends RecyclerView.Adapter<ForFavourite.ViewHolder> {
     private List<Item_Favourite> listFavourites;
     private List<Boolean> statusDropdowns;
+    private DataChangeListener dataChangeListener;
+
+    public void setDataChangeListener(DataChangeListener listener) {
+        this.dataChangeListener = listener;
+    }
 
     public ForFavourite(List<Item_Favourite> listFavourites,  List<Boolean> statusDropdowns) {
        this.listFavourites = listFavourites;
@@ -38,7 +45,7 @@ public class ForFavourite extends RecyclerView.Adapter<ForFavourite.ViewHolder> 
     }
 
     public List<Item_Favourite> getListFavourites() {
-        return listFavourites;
+        return this.listFavourites;
     }
 
     @NonNull
@@ -58,7 +65,10 @@ public class ForFavourite extends RecyclerView.Adapter<ForFavourite.ViewHolder> 
         holder.item_Rv_Fa.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
         holder.item_Rv_Fa_Adapter = new ChildForFavourite(itemFavourite.getList_Favourite());
         holder.item_Rv_Fa.setAdapter(holder.item_Rv_Fa_Adapter);
-        itemFavourite.setList_Favourite(holder.item_Rv_Fa_Adapter.getItems_child_favourite());
+//        itemFavourite.setList_Favourite(holder.item_Rv_Fa_Adapter.getItems_child_favourite());
+        holder.item_Rv_Fa_Adapter.setDataChangeListener(dataChangeListener);
+        UpdateDataAsyncTask refresh = new UpdateDataAsyncTask();
+        refresh.execute(holder.item_Rv_Fa_Adapter.getItems_child_favourite());
 
         if (statusDropdowns.get(position) == false) {
             holder.fabFa.setIcon(ContextCompat.getDrawable(holder.fabFa.getContext(), R.drawable.baseline_arrow_drop_up_24));

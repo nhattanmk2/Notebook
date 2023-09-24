@@ -16,14 +16,14 @@ public class Item_Favourite {
     public void setList_Favourite(List<Item_Word> list_Favourite) {
         List_Favourite = list_Favourite;
     }
-
+    public List<Item_Word> getList_Favourite(){
+        return this.List_Favourite;
+    }
     public String getTitle(){
         return this.Title;
     }
     public int getCount(){
         return this.count;
     }
-    public List<Item_Word> getList_Favourite(){
-        return this.List_Favourite;
-    }
+
 }

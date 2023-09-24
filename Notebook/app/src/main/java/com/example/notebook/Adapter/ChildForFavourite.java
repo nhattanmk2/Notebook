@@ -20,22 +20,37 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.notebook.Interface.DataChangeListener;
+import com.example.notebook.Interface.OnItemRemovedListener;
 import com.example.notebook.Model.Item_Favourite;
 import com.example.notebook.Model.Item_Word;
 import com.example.notebook.R;
+import com.example.notebook.Thread.UpdateDataAsyncTask;
 
 import java.util.List;
 
-public class ChildForFavourite extends RecyclerView.Adapter<ChildForFavourite.ViewHolder> {
+public class ChildForFavourite extends RecyclerView.Adapter<ChildForFavourite.ViewHolder>  {
 
     List<Item_Word> items_child_favourite;
+    private DataChangeListener dataChangeListener;
+
+    public void setDataChangeListener(DataChangeListener listener) {
+        this.dataChangeListener = listener;
+    }
+
     public ChildForFavourite(List<Item_Word> items_child_favourite) {
+        this.items_child_favourite = items_child_favourite;
+
+    }
+
+    public void setItems_child_favourite(List<Item_Word> items_child_favourite) {
         this.items_child_favourite = items_child_favourite;
     }
 
     public List<Item_Word> getItems_child_favourite() {
-        return items_child_favourite;
+        return this.items_child_favourite;
     }
+
 
     @NonNull
     @Override
@@ -75,12 +90,24 @@ public class ChildForFavourite extends RecyclerView.Adapter<ChildForFavourite.Vi
                 title.setText("Do you want cancel favourite in " + items_child_favourite.get(position).getId() + "?");
                 ImageView accept = customView.findViewById(R.id.accept);
                 ImageView decline = customView.findViewById(R.id.decline);
+                //Xóa mục bỏ ưu thích
                 accept.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         items_child_favourite.remove(position);
                         notifyItemRemoved(position);
                         notifyItemRangeChanged(position, items_child_favourite.size());
+                        setItems_child_favourite(items_child_favourite);
+                        //Call cập nhật đã xóa một con trong recylerview con
+                        //Xóa một mục ở Database hiển thị con
+                        // -> làm interface truyền từ giao diện chứa AdapterRecylerView đầu tiên
+                        // -> truyền cho AdapterRecylerView thứ hai thực hiện truyền đến phần call thay đổi
+                        // rồi thằng đầu tiên gọi notifyDataSetChanged() cập nhật lại tất cả các adapter ?
+                        if (dataChangeListener != null) {
+                            dataChangeListener.onDataChanged();
+                        }
+
+//                        refresh.execute(getItems_child_favourite());
                         Toast.makeText(customView.getContext(), "You change the favourite", Toast.LENGTH_SHORT).show();
                         popupWindow.dismiss();
                     }
@@ -116,6 +143,7 @@ public class ChildForFavourite extends RecyclerView.Adapter<ChildForFavourite.Vi
     public int getItemCount() {
         return items_child_favourite.size();
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView words, spellings, synonyms, antonyms, meanings;

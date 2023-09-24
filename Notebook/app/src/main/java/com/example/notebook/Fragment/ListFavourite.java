@@ -27,6 +27,7 @@ import android.widget.PopupWindow;
 
 import com.example.notebook.Adapter.ForFavourite;
 import com.example.notebook.Adapter.forFavouriteSearch;
+import com.example.notebook.Interface.DataChangeListener;
 import com.example.notebook.Model.Item_Favourite;
 import com.example.notebook.Model.Item_Header;
 import com.example.notebook.Model.Item_Word;
@@ -68,18 +69,30 @@ public class ListFavourite extends Fragment {
 
         FavouriteRV.setLayoutManager(new LinearLayoutManager(getContext()));
         forFavourite = new ForFavourite(item_favourites, statusDropdowns);
+        DataChangeListener listener = new DataChangeListener() {
+            @Override
+            public void onDataChanged() {
+                // Cập nhật RecyclerView cha ở đây
+                forFavourite.notifyDataSetChanged();
+                UpdateData();
+                searchList.notifyDataSetChanged();
 
+            }
+        };
+        forFavourite.setDataChangeListener(listener);
         FavouriteRV.setAdapter(forFavourite);
     }
     public void searchResultView(){
         FindRV.setLayoutManager(new LinearLayoutManager(getContext()));
+
         searchList = new forFavouriteSearch(item_words);
+
         FindRV.setAdapter(searchList);
         searchList.setOnItemClickListener(new forFavouriteSearch.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 int positionInforFavourite = -1;
-                Log.d("19", "onItemClick: " + position);
+//                Log.d("19", "onItemClick: " + position);
                 for (int i = 0; i < forFavourite.getItemCount(); ++ i) {
                     //numCount lấy số lượng các từ ưu thích trong một chủ đề
                     int numCount = forFavourite.getListFavourites().get(i).getList_Favourite().size();
@@ -96,10 +109,12 @@ public class ListFavourite extends Fragment {
 
                     forFavourite.setStatus(positionInforFavourite, true);
                     forFavourite.notifyItemChanged(positionInforFavourite);
+
                     FavouriteRV.smoothScrollToPosition(positionInforFavourite);
+
                     FavouriteRV.setVisibility(View.VISIBLE);
 
-                    Log.d("18", "onItemClick: " + positionInforFavourite);
+//                    Log.d("18", "onItemClick: " + positionInforFavourite);
                 }
             }
         });
@@ -140,8 +155,7 @@ public class ListFavourite extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 if (newText.isEmpty()) {
                     searchList.getFilter().filter(newText);
-//                    FavouriteRV.setVisibility(View.VISIBLE);
-//                    FindRV.setVisibility(View.GONE);
+
                 } else {
                     FindRV.setVisibility(View.VISIBLE);
                     searchList.getFilter().filter(newText);
@@ -159,6 +173,19 @@ public class ListFavourite extends Fragment {
                 return false;
             }
         });
+    }
+    void UpdateData(){
+        int cnt = 0;
+        for (int i = 0; i < item_favourites.size(); ++ i) {
+            List<Item_Word> items = item_favourites.get(i).getList_Favourite();
+            for (int j = 0; j < items.size(); ++ j) {
+                Item_Word val = items.get(j);
+                val.setKey(cnt);
+                item_words.set(cnt, val);
+                cnt ++;
+            }
+        }
+        item_words.remove(cnt);
     }
     void dataInitialize(){
         List<Item_Word> litem1 = new ArrayList<>();
@@ -185,6 +212,7 @@ public class ListFavourite extends Fragment {
         Item_Favourite item3 = new Item_Favourite("muc 1", 20, litem3);
         item_favourites.add(item3);
         statusDropdowns.add(false);
+
         int cnt = 0;
         for (int i = 0; i < item_favourites.size(); ++ i) {
             List<Item_Word> items = item_favourites.get(i).getList_Favourite();
@@ -195,5 +223,6 @@ public class ListFavourite extends Fragment {
                 cnt ++;
             }
         }
+
     }
 }
