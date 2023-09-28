@@ -3,13 +3,19 @@ package com.example.notebook.Model;
 import java.util.List;
 
 public class Item_Word {
-    int key;
+
     private String id;
-    private String name;
-    private byte[] imageResourceId;
+    private String word;
+    private String meaning;
+
     private List<String> Antonyms;
     private List<String> Synonyms;
     private boolean status;
+    public Item_Word() {}
+
+    public Item_Word(String id, boolean status) {
+        this.id = id; this.status = status;
+    }
 
     public void setStatus(boolean status) {
         this.status = status;
@@ -18,13 +24,23 @@ public class Item_Word {
     public boolean isStatus() {
         return status;
     }
-    public Item_Word(String id, boolean status) {
-        this.id = id; this.status = status;
+    public String getWord() {
+        return word;
     }
-    public Item_Word(String id, int key) {
-        this.id = id;
-        this.key = key;
+
+    public void setWord(String word) {
+        this.word = word;
     }
+
+    public String getMeaning() {
+        return meaning;
+    }
+
+    public void setMeaning(String meaning) {
+        this.meaning = meaning;
+    }
+
+
     public void setAntonyms(List<String> antonyms) {
         this.Antonyms = antonyms;
     }
@@ -42,29 +58,12 @@ public class Item_Word {
     }
 
 
-    public void setKey(int key) {
-        this.key = key;
-    }
-
-    public int getKey() {
-        return key;
-    }
-
-    public Item_Word(String id, String name, byte[] imageResourceId) {
-        this.id = id;
-        this.name = name;
-        this.imageResourceId = imageResourceId;
-    }
-
     public String getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public byte[] getImageResourceId() {
-        return imageResourceId;
-    }
 }

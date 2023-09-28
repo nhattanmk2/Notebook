@@ -34,6 +34,7 @@ import com.example.notebook.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,12 +54,16 @@ public class MainActivity extends AppCompatActivity implements ViewPagerInteract
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AndroidThreeTen.init(this);
         fab = findViewById(R.id.fab);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         drawerLayout = findViewById(R.id.drawer_layout);
+
         Toolbar toolbar = findViewById(R.id.toolbar); //Ignore red line errors
         setSupportActionBar(toolbar);
+
         CreateFragment();
+
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.findItem(R.id.none);
         menuItem.setEnabled(false);

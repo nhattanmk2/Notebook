@@ -24,6 +24,38 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/edit_RV"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"
+        android:layout_weight="2"/>
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/addCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="8dp"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:id="@+id/createWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/new_edit" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:layout_margin="3dp"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:text="New words" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

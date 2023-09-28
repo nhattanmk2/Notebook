@@ -22,12 +22,13 @@ import java.util.List;
 public class ForTitleRV extends RecyclerView.Adapter<ForTitleRV.ViewHolder> {
 
     List<List<Item_Word>> childData;
+    private List<String> headers;
     List<Boolean> actionFab = new ArrayList<>();
     private List<ViewHolder> viewHolderList = new ArrayList<>();
 
-    public ForTitleRV(List<List<Item_Word>> childData) {
+    public ForTitleRV(List<String> headers, List<List<Item_Word>> childData) {
         this.childData = childData;
-
+        this.headers = headers;
     }
     public List<ViewHolder> getViewHolderList() {
         return viewHolderList;
@@ -48,15 +49,15 @@ public class ForTitleRV extends RecyclerView.Adapter<ForTitleRV.ViewHolder> {
         //Set Item chủ đề tương đương với Item trong ForTopRV
         List<Item_Word> childItems = childData.get(position);
 
-        holder.textView.setText("Unit");
+        holder.textView.setText(headers.get(position));
         holder.childForTitleRV = new ChildForTitleRV(childItems);
 
         holder.childRecyclerView.setAdapter(holder.childForTitleRV);
         //Thay đổi dữ liệu từ con
         childData.set(position, holder.childForTitleRV.getChildData());
-        for (int i = 0; i < childData.get(position).size(); ++ i) {
-            Log.d("22", "onBindViewHolder: " + position + " " + i + " " + childData.get(position).get(i).isStatus());
-        }
+//        for (int i = 0; i < childData.get(position).size(); ++ i) {
+//            Log.d("22", "onBindViewHolder: " + position + " " + i + " " + childData.get(position).get(i).isStatus());
+//        }
         holder.childForTitleRV.notifyDataSetChanged();
         holder.fab.setOnClickListener(new View.OnClickListener() {
             @Override

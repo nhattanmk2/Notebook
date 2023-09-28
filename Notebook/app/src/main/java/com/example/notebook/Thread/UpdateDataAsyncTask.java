@@ -25,7 +25,7 @@ public class UpdateDataAsyncTask extends AsyncTask<List<Item_Word>, Void, List<I
     @Override
     protected void onPostExecute(List<Item_Word> updatedItemList) {
         for (Item_Word get : updatedItemList) {
-            Log.d("24", "onPostExecute: " + get.getId() + " " + get.getKey());
+//            Log.d("24", "onPostExecute: " + get.getId() + " " + get.getKey());
         }
     }
 }

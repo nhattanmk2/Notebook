@@ -35,9 +35,9 @@ public class ForFavourite extends RecyclerView.Adapter<ForFavourite.ViewHolder> 
         this.dataChangeListener = listener;
     }
 
-    public ForFavourite(List<Item_Favourite> listFavourites,  List<Boolean> statusDropdowns) {
-       this.listFavourites = listFavourites;
-       this.statusDropdowns = statusDropdowns;
+    public ForFavourite(List<Item_Favourite> listFavourites, List<Boolean> statusDropdowns) {
+        this.listFavourites = listFavourites;
+        this.statusDropdowns = statusDropdowns;
     }
 
     public void setStatus(int position, boolean status) {
@@ -61,14 +61,19 @@ public class ForFavourite extends RecyclerView.Adapter<ForFavourite.ViewHolder> 
         Item_Favourite itemFavourite = listFavourites.get(position);
 
         holder.title.setText(itemFavourite.getTitle());
-        holder.progressBar.setProgress((int) ( itemFavourite.getList_Favourite().size() * 100 /itemFavourite.getCount() ));
+
+
+        holder.progressBar.setProgress((int) (itemFavourite.getList_Favourite().size() * 100 / itemFavourite.getCount()));
         holder.item_Rv_Fa.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
+
         holder.item_Rv_Fa_Adapter = new ChildForFavourite(itemFavourite.getList_Favourite());
         holder.item_Rv_Fa.setAdapter(holder.item_Rv_Fa_Adapter);
-//        itemFavourite.setList_Favourite(holder.item_Rv_Fa_Adapter.getItems_child_favourite());
         holder.item_Rv_Fa_Adapter.setDataChangeListener(dataChangeListener);
         UpdateDataAsyncTask refresh = new UpdateDataAsyncTask();
         refresh.execute(holder.item_Rv_Fa_Adapter.getItems_child_favourite());
+
+//        itemFavourite.setList_Favourite(holder.item_Rv_Fa_Adapter.getItems_child_favourite());
+
 
         if (statusDropdowns.get(position) == false) {
             holder.fabFa.setIcon(ContextCompat.getDrawable(holder.fabFa.getContext(), R.drawable.baseline_arrow_drop_up_24));
@@ -81,15 +86,14 @@ public class ForFavourite extends RecyclerView.Adapter<ForFavourite.ViewHolder> 
         holder.fabFa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("20", "onBindViewHolder: " + position + " " + itemFavourite.getList_Favourite().size());
+//                Log.d("20", "onBindViewHolder: " + position + " " + itemFavourite.getList_Favourite().size());
                 if (statusDropdowns.get(position) == false) {
                     //Danh sách được mở
                     statusDropdowns.set(position, true);
                     holder.fabFa.setIcon(ContextCompat.getDrawable(holder.fabFa.getContext(), R.drawable.baseline_arrow_drop_down_24));
                     holder.itemView.findViewById(R.id.itemTitleRecyclerViewFa).setVisibility(View.VISIBLE);
 
-                }
-                else {
+                } else {
                     statusDropdowns.set(position, false);
                     holder.fabFa.setIcon(ContextCompat.getDrawable(holder.fabFa.getContext(), R.drawable.baseline_arrow_drop_up_24));
                     holder.itemView.findViewById(R.id.itemTitleRecyclerViewFa).setVisibility(View.GONE);
@@ -103,12 +107,13 @@ public class ForFavourite extends RecyclerView.Adapter<ForFavourite.ViewHolder> 
         return this.listFavourites.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         ExtendedFloatingActionButton fabFa;
         ProgressBar progressBar;
         RecyclerView item_Rv_Fa;
         ChildForFavourite item_Rv_Fa_Adapter;
+
         // Danh sách đang được đóng
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

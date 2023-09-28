@@ -35,10 +35,27 @@ import android.widget.Toast;
 
 import com.example.notebook.Adapter.ForMenuUnit;
 import com.example.notebook.Interface.ViewPagerInteractionListener;
+import com.example.notebook.Model.Item_Favourite;
 import com.example.notebook.Model.Item_Header;
+import com.example.notebook.Model.Item_Word;
+import com.example.notebook.Model.Item_Word_By_Unit;
 import com.example.notebook.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import org.threeten.bp.LocalDate;
 
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -48,7 +65,8 @@ public class MenuUnit extends Fragment {
     ForMenuUnit forMenuUnit;
     LinearLayout linearLayout;
     List<Item_Header> item_headers = new ArrayList<>();
-
+    DatabaseReference databaseReference;
+    ValueEventListener valueEventListener;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -65,7 +83,9 @@ public class MenuUnit extends Fragment {
 
         linearLayout = view.findViewById(R.id.createProject);
         recyclerView = view.findViewById(R.id.menuRC);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         forMenuUnit = new ForMenuUnit(item_headers);
         forMenuUnit.setParentView((ViewGroup) recyclerView.getParent());
         forMenuUnit.setOnLongItemClickListener(new ForMenuUnit.OnLongClickListener() {
@@ -190,10 +210,27 @@ public class MenuUnit extends Fragment {
                             creator_name.setHint("Please fill creator name");
                             creator_name.setHintTextColor(getResources().getColor(R.color.rez));
                         }  if (!project_name.getText().toString().isEmpty() && !creator_name.getText().toString().isEmpty()) {
-                            Log.d("12", "onClick: " + creator_name.getText().toString().isEmpty());
-                            Item_Header itemHeader = new Item_Header(project_name.getText().toString(), creator_name.getText().toString(), 15);
-                            item_headers.add(itemHeader);
-                            Toast.makeText(linearLayout.getContext(), "This is a toast message", Toast.LENGTH_SHORT).show();
+//                            Log.d("12", "onClick: " + creator_name.getText().toString().isEmpty());
+
+                            Calendar calendar = Calendar.getInstance();
+
+                            // Định dạng chuỗi "HH:mm:ss" (giờ:phút:giây)
+                            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+
+                            String timeString = timeFormat.format(calendar.getTime());
+
+                            List<Item_Word> favouriteL = new ArrayList<>();
+
+                            List<Item_Word> words = new ArrayList<>();
+                            for (int i = 0; i < 10; ++ i) words.add(new Item_Word("", false));
+
+                            UpdateData(new Item_Header(project_name.getText().toString(), creator_name.getText().toString(), 10,
+                                    LocalDate.now().toString(), LocalDate.now().toString(), timeString, timeString)
+                                    , new Item_Favourite(project_name.getText().toString(), 0, favouriteL)
+                                    , new Item_Word_By_Unit(project_name.getText().toString(), 10, words));
+//                            Item_Header itemHeader = new Item_Header(project_name.getText().toString(), creator_name.getText().toString(), 15);
+//                            item_headers.add(itemHeader);
+//                            Toast.makeText(linearLayout.getContext(), "This is a toast message", Toast.LENGTH_SHORT).show();
                             popupWindow.dismiss();
                         }
                     }
@@ -218,21 +255,81 @@ public class MenuUnit extends Fragment {
             }
         });
     }
-
+    public void UpdateData(Item_Header data, Item_Favourite dataf, Item_Word_By_Unit dataff) {
+        String title = data.getTitle();
+//        Log.d("44", "UpdateData: " + title);
+        FirebaseDatabase.getInstance().getReference("List Unit").child(title)
+                .setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful())
+                            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        FirebaseDatabase.getInstance().getReference("Favorite List").child(title)
+                .setValue(dataf).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful())
+                            Toast.makeText(getContext(), "Saved1", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        FirebaseDatabase.getInstance().getReference("All Word").child(title)
+                .setValue(dataff).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful())
+                            Toast.makeText(getContext(), "Saved2", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
     public void dataInitialize() {
-        Item_Header itemHeader1 = new Item_Header("Animal", "Thanh Son", 4);
-        Item_Header itemHeader2 = new Item_Header("Tiger", "Mai Linh", 4);
-        Item_Header itemHeader3 = new Item_Header("Animal", "Mai Hanh", 4);
-        Item_Header itemHeader4 = new Item_Header("Tiger", "Mai Thuy", 4);
-        Item_Header itemHeader5 = new Item_Header("Animal", "Vinh Ngo", 4);
-        Item_Header itemHeader6 = new Item_Header("Tiger", "Be Son", 4);
-        Item_Header itemHeader7 = new Item_Header("Animal", "Be Linh", 4);
-        item_headers.add(itemHeader1);
-        item_headers.add(itemHeader2);
-        item_headers.add(itemHeader3);
-        item_headers.add(itemHeader4);
-        item_headers.add(itemHeader5);
-        item_headers.add(itemHeader6);
-        item_headers.add(itemHeader7);
+        databaseReference = FirebaseDatabase.getInstance().getReference("List Unit");
+        valueEventListener = databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+               //Có thể cải tiến lấy phần tử cuối của snapshot thêm vào item_headers
+                item_headers.clear();
+                for (DataSnapshot itemSnapshot: snapshot.getChildren()) {
+                    Item_Header item = itemSnapshot.getValue(Item_Header.class);
+                    item_headers.add(item);
+                }
+                forMenuUnit.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+//        Item_Header itemHeader1 = new Item_Header("Animal", "Thanh Son", 4);
+//        Item_Header itemHeader2 = new Item_Header("Tiger", "Mai Linh", 4);
+//        Item_Header itemHeader3 = new Item_Header("Animal", "Mai Hanh", 4);
+//        Item_Header itemHeader4 = new Item_Header("Tiger", "Mai Thuy", 4);
+//        Item_Header itemHeader5 = new Item_Header("Animal", "Vinh Ngo", 4);
+//        Item_Header itemHeader6 = new Item_Header("Tiger", "Be Son", 4);
+//        Item_Header itemHeader7 = new Item_Header("Animal", "Be Linh", 4);
+//        item_headers.add(itemHeader1);
+//        item_headers.add(itemHeader2);
+//        item_headers.add(itemHeader3);
+//        item_headers.add(itemHeader4);
+//        item_headers.add(itemHeader5);
+//        item_headers.add(itemHeader6);
+//        item_headers.add(itemHeader7);
     }
 }

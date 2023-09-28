@@ -53,7 +53,7 @@ public class forFavouriteSearch extends RecyclerView.Adapter<forFavouriteSearch.
             @Override
             public void onClick(View view) {
                 if (clickListener != null) {
-                    clickListener.onItemClick(view, listWord.get(position).getKey());
+//                    clickListener.onItemClick(view, listWord.get(position).getKey());
                 }
             }
         });

@@ -46,7 +46,7 @@ public class ChildForTitleRV extends RecyclerView.Adapter<ChildForTitleRV.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Item_Word data = childData.get(position);
 //        String data = childData.get(position).getId();
-        holder.textView.setText(data.getId());
+//        holder.textView.setText(data.getId());
         holder.favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

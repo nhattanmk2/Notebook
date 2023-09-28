@@ -6,6 +6,9 @@ public class Item_Favourite {
     private String Title;
     private int count;
     private List<Item_Word> List_Favourite;
+    public Item_Favourite() {
+
+    }
 
     public Item_Favourite(String Title, int count, List<Item_Word> List_Favourite) {
         this.Title = Title;
@@ -19,6 +22,11 @@ public class Item_Favourite {
     public List<Item_Word> getList_Favourite(){
         return this.List_Favourite;
     }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
+
     public String getTitle(){
         return this.Title;
     }

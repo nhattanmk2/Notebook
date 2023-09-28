@@ -31,13 +31,21 @@ import com.example.notebook.Interface.DataChangeListener;
 import com.example.notebook.Model.Item_Favourite;
 import com.example.notebook.Model.Item_Header;
 import com.example.notebook.Model.Item_Word;
+import com.example.notebook.Model.Item_Word_By_Unit;
 import com.example.notebook.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListFavourite extends Fragment {
 
+    DatabaseReference databaseReference;
+    ValueEventListener valueEventListener;
     RecyclerView FavouriteRV, FindRV;
     ForFavourite forFavourite;
     forFavouriteSearch searchList;
@@ -61,14 +69,18 @@ public class ListFavourite extends Fragment {
         super.onViewCreated(view, saveInstanceState);
         FavouriteRV = view.findViewById(R.id.rvFa);
         FindRV = view.findViewById(R.id.search_rv);
+        FavouriteRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        forFavourite = new ForFavourite(item_favourites, statusDropdowns);
+
+        FindRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        searchList = new forFavouriteSearch(item_words);
         mainView();
         searchResultView();
         dataInitialize();
     }
     public void mainView() {
 
-        FavouriteRV.setLayoutManager(new LinearLayoutManager(getContext()));
-        forFavourite = new ForFavourite(item_favourites, statusDropdowns);
+
         DataChangeListener listener = new DataChangeListener() {
             @Override
             public void onDataChanged() {
@@ -83,9 +95,7 @@ public class ListFavourite extends Fragment {
         FavouriteRV.setAdapter(forFavourite);
     }
     public void searchResultView(){
-        FindRV.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        searchList = new forFavouriteSearch(item_words);
 
         FindRV.setAdapter(searchList);
         searchList.setOnItemClickListener(new forFavouriteSearch.OnItemClickListener() {
@@ -180,49 +190,84 @@ public class ListFavourite extends Fragment {
             List<Item_Word> items = item_favourites.get(i).getList_Favourite();
             for (int j = 0; j < items.size(); ++ j) {
                 Item_Word val = items.get(j);
-                val.setKey(cnt);
+//                val.setKey(cnt);
                 item_words.set(cnt, val);
                 cnt ++;
             }
         }
         item_words.remove(cnt);
-    }
-    void dataInitialize(){
-        List<Item_Word> litem1 = new ArrayList<>();
-        litem1.add(new Item_Word("quyen 1", 0));
-        litem1.add(new Item_Word("quyen 2", 0));
-        litem1.add(new Item_Word("quyen 3", 0));
-        litem1.add(new Item_Word("quyen 4", 0));
-        Item_Favourite item1 = new Item_Favourite("muc 1", 10, litem1);
-        item_favourites.add(item1);
-        statusDropdowns.add(false);
-        List<Item_Word> litem2 = new ArrayList<>();
-        litem2.add(new Item_Word("quyen 1", 1));
-        litem2.add(new Item_Word("quyen 2", 1));
-        litem2.add(new Item_Word("quyen 3", 1));
-        litem2.add(new Item_Word("quyen 4", 1));
-        Item_Favourite item2 = new Item_Favourite("muc 1", 5, litem2);
-        item_favourites.add(item2);
-        statusDropdowns.add(false);
-        List<Item_Word> litem3 = new ArrayList<>();
-        litem3.add(new Item_Word("quyen 1", 2));
-        litem3.add(new Item_Word("quyen 2", 2));
-        litem3.add(new Item_Word("quyen 3", 2));
-        litem3.add(new Item_Word("quyen 4", 2));
-        Item_Favourite item3 = new Item_Favourite("muc 1", 20, litem3);
-        item_favourites.add(item3);
-        statusDropdowns.add(false);
 
-        int cnt = 0;
+    }
+    public void dataForSearch() {
+        int cnt = 0; item_words.clear();
         for (int i = 0; i < item_favourites.size(); ++ i) {
             List<Item_Word> items = item_favourites.get(i).getList_Favourite();
             for (int j = 0; j < items.size(); ++ j) {
                 Item_Word val = items.get(j);
-                val.setKey(cnt);
+//                val.setKey(cnt);
                 item_words.add(val);
                 cnt ++;
             }
         }
+    }
+    void dataInitialize(){
+        databaseReference = FirebaseDatabase.getInstance().getReference("Favorite List");
+        valueEventListener = databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Có thể cải tiến lấy phần tử cuối của snapshot thêm vào item_headers
+                item_favourites.clear(); statusDropdowns.clear();
+                for (DataSnapshot itemSnapshot: snapshot.getChildren()) {
+                    Item_Favourite item = itemSnapshot.getValue(Item_Favourite.class);
+                    if (item.getList_Favourite() != null) {
+                        statusDropdowns.add(false);
+                        item_favourites.add(item);
+                    }
+                }
+                if (forFavourite != null)  forFavourite.notifyDataSetChanged();
+                dataForSearch();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+//        List<Item_Word> litem1 = new ArrayList<>();
+//        litem1.add(new Item_Word("quyen 1", 0));
+//        litem1.add(new Item_Word("quyen 2", 0));
+//        litem1.add(new Item_Word("quyen 3", 0));
+//        litem1.add(new Item_Word("quyen 4", 0));
+//        Item_Favourite item1 = new Item_Favourite("muc 1", 10, litem1);
+//        item_favourites.add(item1);
+//        statusDropdowns.add(false);
+//        List<Item_Word> litem2 = new ArrayList<>();
+//        litem2.add(new Item_Word("quyen 1", 1));
+//        litem2.add(new Item_Word("quyen 2", 1));
+//        litem2.add(new Item_Word("quyen 3", 1));
+//        litem2.add(new Item_Word("quyen 4", 1));
+//        Item_Favourite item2 = new Item_Favourite("muc 1", 5, litem2);
+//        item_favourites.add(item2);
+//        statusDropdowns.add(false);
+//        List<Item_Word> litem3 = new ArrayList<>();
+//        litem3.add(new Item_Word("quyen 1", 2));
+//        litem3.add(new Item_Word("quyen 2", 2));
+//        litem3.add(new Item_Word("quyen 3", 2));
+//        litem3.add(new Item_Word("quyen 4", 2));
+//        Item_Favourite item3 = new Item_Favourite("muc 1", 20, litem3);
+//        item_favourites.add(item3);
+//        statusDropdowns.add(false);
+//
+//        int cnt = 0;
+//        for (int i = 0; i < item_favourites.size(); ++ i) {
+//            List<Item_Word> items = item_favourites.get(i).getList_Favourite();
+//            for (int j = 0; j < items.size(); ++ j) {
+//                Item_Word val = items.get(j);
+//                val.setKey(cnt);
+//                item_words.add(val);
+//                cnt ++;
+//            }
+//        }
 
     }
 }

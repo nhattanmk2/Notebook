@@ -3,4 +3,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="action_search">Search by words</string>
+    <string name="Edit_Word">Word</string>
+    <string name="Edit_Meaning">Meaning</string>
+    <string name="Edit_Synonyms">Synonyms</string>
+    <string name="Edit_Antonyms">Antonyms</string>
 </resources>
