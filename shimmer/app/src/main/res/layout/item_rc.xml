@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--    https://www.youtube.com/watch?v=Gz91A7Gii-8&t=220s&ab_channel=EasyTuto-->
+<com.facebook.shimmer.ShimmerFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/shimmer"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+   >
+
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+<!--    Đặt android:background="#DDDDDD" để tạo khác biệt với nền -->
+        <TextView
+            android:id="@+id/textView"
+            android:layout_height="30dp"
+            android:layout_width="match_parent"
+            android:background="#DDDDDD"/>
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_height="30dp"
+            android:layout_width="match_parent"
+            android:background="#DDDDDD"/>
+    </LinearLayout>
+
+</com.facebook.shimmer.ShimmerFrameLayout>
