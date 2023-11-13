@@ -1,0 +1,8 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/blue" /> <!-- Set the background color of the shape -->
+    <corners
+        android:topRightRadius="0dp"
+        android:bottomRightRadius="50dp"
+        android:topLeftRadius="0dp"
+        android:bottomLeftRadius="50dp" /> <!-- Set the radius for the bottom left corner -->
+</shape>
