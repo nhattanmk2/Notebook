@@ -3,6 +3,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#3F51B5</color>
+    <color name="quizz">#4255ff</color>
     <color name="red">#E91E63</color>
     <color name="gray">#808080</color>
+    <color name="notification_background">#F0F8FF</color>
+    <color name="r1">#FFEB3B</color>
+    <color name="r2">#4CAF50</color>
+    <color name="lightsalmon">#FFA07A</color>
+    <color name="orangered">#FF4500</color>
+    <color name="lime">#00FF00</color>
+    <color name="palegreen">#98FB98</color>
 </resources>

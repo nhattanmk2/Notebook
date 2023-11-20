@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/favouriteMenu"
-        android:title="Ưu thích" />
+        android:id="@+id/homeMenu"
+        android:icon="@drawable/home"
+        android:title="Trang chủ"
+        android:iconSpaceReserved="true"
+        android:titleCondensed=""
+        />
     <item
-        android:id="@+id/registerMenu"
-        android:title="Đăng ký"
+        android:id="@+id/searchMenu"
+        android:icon="@drawable/search"
+        android:title="Tra từ"
        />
+    <item
+        android:id="@+id/add"
+        android:icon="@drawable/add"
+        android:background="@drawable/back"
+        android:iconSpaceReserved="false"
+        android:title=""
+        />
+    <item
+        android:id="@+id/libraryMenu"
+        android:icon="@drawable/folder"
+        android:title="Thư viện"
+        />
+    <item
+        android:id="@+id/profileMenu"
+        android:icon="@drawable/profile"
+        android:title="Hồ sơ"
+        />
 </menu>

@@ -1,0 +1,12 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <solid android:color="@color/lightsalmon" /> <!-- Set the background color of the shape -->
+    <stroke
+        android:width="3dp"
+        android:color="@color/orangered" />
+    <corners
+        android:bottomLeftRadius="0dp"
+        android:bottomRightRadius="50dp"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="50dp" /> <!-- Set the radius for the bottom left corner -->
+</shape>

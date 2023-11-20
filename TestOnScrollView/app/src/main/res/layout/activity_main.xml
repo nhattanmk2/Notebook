@@ -1,118 +1,48 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <FrameLayout
+            android:id="@+id/MainView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="9">
+            app:layout_constraintBottom_toTopOf="@id/btm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.92"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ScrollView
-                android:id="@+id/scrollView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="120dp"
-                android:scrollbars="none">
-
-                <!-- Các view khác trong ScrollView -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-
-                        android:layout_width="match_parent"
-                        android:layout_height="500dp"
-                        android:text="View cố định" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="500dp"
-                        android:text="View cố định" />
-
-                </LinearLayout>
-            </ScrollView>
-
-            <ScrollView
-                android:id="@+id/test"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:id="@+id/component1"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp">
-
-                        <TextView
-                            android:id="@+id/component1_1"
-                            android:layout_width="320dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginBottom="5dp"
-                            android:gravity="bottom"
-                            android:text="Quizlet"
-                            android:textColor="@color/white"
-                            android:textSize="28dp" />
-
-                        <ImageView
-                            android:id="@+id/component1_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_toRightOf="@id/component1_1"
-                            android:src="@drawable/baseline_notifications_24" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="10dp"
-                            android:layout_toRightOf="@id/component1_2"
-                            android:gravity="bottom"
-                            android:text="1"
-                            android:textColor="@color/red" />
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="10dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:gravity="center"
-                        android:paddingBottom="10dp">
-
-                        <EditText
-                            android:id="@+id/component2"
-                            android:layout_width="300dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/border_1"
-                            android:drawableLeft="@drawable/baseline_search_24"
-                            android:gravity="center|left"
-                            android:hint="Học phần, thư mục, từ vựng"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="10dp"
-                            android:textColor="@color/gray" />
-                    </LinearLayout>
-                </LinearLayout>
-            </ScrollView>
         </FrameLayout>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNV"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/btm"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            app:menu="@menu/bottom_menu" />
-    </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.08"
+            app:layout_constraintHeight_min="60dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/MainView">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_gravity="center"
+                app:menu="@menu/bottom_menu"
+                app:itemPaddingBottom="0dp"
+                app:itemBackground="@color/white"
+                android:textSize="10dp"/>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
