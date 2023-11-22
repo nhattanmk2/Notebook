@@ -138,7 +138,7 @@ public class HomeFragment extends Fragment implements UpdateHomeFragment, ItemTo
         SearchAction();
     }
 
-
+    //Test
     @Override
     public void onNewFolder(Folder newData) {
         arrayList2.add(newData);
@@ -154,13 +154,17 @@ public class HomeFragment extends Fragment implements UpdateHomeFragment, ItemTo
 
     private void FolderReadAllAction() {
         fragmentHomeBinding.goToFolder.setOnClickListener(v -> {
-            Toast.makeText(requireContext(), "H2", Toast.LENGTH_SHORT).show();
+            if (replaceFragment != null) {
+                replaceFragment.replace(new LibraryFragment(), 31);
+            }
         });
     }
 
     private void SubjectReadAllAction() {
         fragmentHomeBinding.goToSubject.setOnClickListener(v -> {
-            Toast.makeText(requireContext(), "H3", Toast.LENGTH_SHORT).show();
+            if (replaceFragment != null) {
+                replaceFragment.replace(new LibraryFragment(), 30);
+            }
         });
     }
 
@@ -309,11 +313,12 @@ public class HomeFragment extends Fragment implements UpdateHomeFragment, ItemTo
         }
     }
     private void ViewPagerSetUp() {
-
-        dataViewPager.add(new HomeAchievement(1, R.drawable.a0, getResources().getString(R.string.achievement_1_title)));
-        dataViewPager.add(new HomeAchievement(2, R.drawable.b0, getResources().getString(R.string.achievement_2_title)));
-        dataViewPager.add(new HomeAchievement(3, R.drawable.c0, getResources().getString(R.string.achievement_3_title)));
-
+//        if (dataViewPager.size() == 0) {
+        dataViewPager.clear();
+            dataViewPager.add(new HomeAchievement(1, R.drawable.a0, getResources().getString(R.string.achievement_1_title)));
+            dataViewPager.add(new HomeAchievement(2, R.drawable.b0, getResources().getString(R.string.achievement_2_title)));
+            dataViewPager.add(new HomeAchievement(3, R.drawable.c0, getResources().getString(R.string.achievement_3_title)));
+//        }
         fragmentHomeBinding.vp2.setOffscreenPageLimit(3);
         fragmentHomeBinding.vp2.setClipToPadding(false);
         fragmentHomeBinding.vp2.setClipChildren(false);
@@ -356,7 +361,8 @@ public class HomeFragment extends Fragment implements UpdateHomeFragment, ItemTo
         }
     };
     private void TestData() {
-        if (arrayList.size() == 0) {
+        arrayList.clear();   countNumberClickSubject.clear();arrayList2.clear();arrayList3.clear();
+//        if (arrayList.size() == 0) {
             arrayList.add(new Subject("Toi la son", "toi la hoc sinh", "10"));
             arrayList.add(new Subject("Toi la 2", "toi la hoc 2", "10"));
             arrayList.add(new Subject("Toi la 3", "toi la hoc 2", "10"));
@@ -377,22 +383,22 @@ public class HomeFragment extends Fragment implements UpdateHomeFragment, ItemTo
             countNumberClickSubject.add(0);
             countNumberClickSubject.add(0);
             countNumberClickSubject.add(0);
-        }
-        if (arrayList2.size() == 0) {
+//        }
+//        if (arrayList2.size() == 0) {
             arrayList2.add(new Folder("hi", "hii", "1", "1"));
             arrayList2.add(new Folder("hi", "hii", "1", "1"));
             arrayList2.add(new Folder("hi", "hii", "1", "1"));
             arrayList2.add(new Folder("hi", "hii", "1", "1"));
             arrayList2.add(new Folder("hi", "hii", "1", "1"));
             arrayList2.add(new Folder("hi", "hii", "1", "1"));
-        }
-        if (arrayList3.size() == 0) {
+//        }
+//        if (arrayList3.size() == 0) {
             arrayList3.add(new Notification("Tuyệt vời. Bạn đang có chuỗi 3 ngày liên tục. Hãy duy trì động lực vào học tiếp.5g", "1"));
             arrayList3.add(new Notification("Chúc mừng năm mới", "2"));
             arrayList3.add(new Notification("Chúc mừng ngày mới", "2"));
             arrayList3.add(new Notification("Chúc mừng sinh nhật", "2"));
             arrayList3.add(new Notification("Chúc mừng năm mới", "2"));
-        }
+//        }
     }
 
     @Override

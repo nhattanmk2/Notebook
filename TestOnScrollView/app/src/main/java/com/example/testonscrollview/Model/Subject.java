@@ -11,7 +11,9 @@ public class Subject implements Serializable {
     List<Word> wordList;
     String date_create;
     String time_create;
-
+    public  Subject(String subject_name) {
+        this.subject_name = subject_name;
+    }
     public  Subject(String subject_name, String subject_describe, String word_count) {
         this.subject_name = subject_name;
         this.subject_describe = subject_describe;

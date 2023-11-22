@@ -54,4 +54,6 @@
     <string name="create_subject_2">TIÊU ĐỀ</string>
     <string name="create_subject_3">Hãy cho mô tả học phần của bạn?</string>
     <string name="create_subject_4">MÔ TẢ </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

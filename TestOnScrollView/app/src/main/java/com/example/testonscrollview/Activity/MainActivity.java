@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 
 import com.example.testonscrollview.Fragment.HomeFragment;
+import com.example.testonscrollview.Fragment.LibraryFragment;
 import com.example.testonscrollview.Fragment.SearchFragment;
 import com.example.testonscrollview.Interface.PutSubject;
 import com.example.testonscrollview.Interface.ReplaceFragment;
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements ReplaceFragment, 
 
     ActivityMainBinding activityMainBinding;
     InputMethodManager imm;
-    Fragment homeFragment = new HomeFragment();
+    Fragment homeFragment = new HomeFragment(), libraryFragment = new LibraryFragment();
     int previousBtm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,15 +79,16 @@ public class MainActivity extends AppCompatActivity implements ReplaceFragment, 
             if (item.getItemId() == R.id.homeMenu) {
                 replaceFragment(homeFragment);
             }
-            else if (item.getItemId() == R.id.searchMenu)
-                Toast.makeText(getApplicationContext(), "HH2", Toast.LENGTH_SHORT).show();
+            else if (item.getItemId() == R.id.searchMenu){
+
+            }
             else if (item.getItemId() == R.id.add) {
                 previousBtm = activityMainBinding.bottomNV.getSelectedItemId();
-
                 openCreateDialog();
             }
-            else if (item.getItemId() == R.id.libraryMenu)
-                Toast.makeText(getApplicationContext(), "HH3", Toast.LENGTH_SHORT).show();
+            else if (item.getItemId() == R.id.libraryMenu) {
+                replaceFragment(libraryFragment);
+            }
             else if (item.getItemId() == R.id.profileMenu)
                 Toast.makeText(getApplicationContext(), "HH4", Toast.LENGTH_SHORT).show();
 
@@ -108,11 +110,18 @@ public class MainActivity extends AppCompatActivity implements ReplaceFragment, 
             replaceFragment(fragment);
             ((SearchFragment) fragment).setReplaceFragment(this);
         }
-        else
         if (state == 1) {
             //home fragment
             replaceFragment(fragment);
             ((HomeFragment) fragment).setReplaceFragment(this);
+        }
+        if (state == 30) {
+
+            activityMainBinding.bottomNV.setSelectedItemId(R.id.libraryMenu);
+        }
+        if (state == 31) {
+
+            activityMainBinding.bottomNV.setSelectedItemId(R.id.libraryMenu);
         }
     }
 

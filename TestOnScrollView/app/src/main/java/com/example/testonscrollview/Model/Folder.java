@@ -12,7 +12,10 @@ public class Folder implements Serializable {
     String date_create;
     String time_create;
 
-
+    public Folder(String folder_name, String folder_describe) {
+        this.folder_name = folder_name;
+        this.folder_describe = folder_describe;
+    }
     public Folder(String folder_name, String folder_describe, String date_create, String time_create) {
         this.folder_name = folder_name;
         this.folder_describe = folder_describe;
