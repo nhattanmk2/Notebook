@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestOnScrollView"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Activity.Game3"
+            android:exported="false" />
         <activity
             android:name=".Activity.Login_Achievement"
             android:exported="false" />

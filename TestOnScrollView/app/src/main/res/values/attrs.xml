@@ -4,8 +4,10 @@
     <declare-styleable name="CustomCardView">
 
         <attr name="state" format="enum">
-            <enum name="happy" value="0" />
-            <enum name="sad" value="1" />
+            <enum name="game1" value="0" />
+            <enum name="game2" value="1"/>
+            <enum name="game3" value="2"/>
+            <enum name="game4" value="3"/>
         </attr>
     </declare-styleable>
 

@@ -84,6 +84,7 @@ public class SubjectActivity extends AppCompatActivity implements GotoLearnActiv
 
         ((CustomCardView) subjectBinding.game1Img.getParent().getParent()).setGotoLearnActivity(this);
         ((CustomCardView) subjectBinding.game2Img.getParent().getParent()).setGotoLearnActivity(this);
+        ((CustomCardView) subjectBinding.game3Img.getParent().getParent()).setGotoLearnActivity(this);
 
         subjectBinding.scrollView.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
@@ -151,11 +152,17 @@ public class SubjectActivity extends AppCompatActivity implements GotoLearnActiv
             goGame1.putExtra("number_correct", 0);
             goGame1.putExtra("learning", 0);
             startActivity(goGame1);
+        }
 
-        } else if (state == 1) {
+        else if (state == 1) {
             Intent goGame2 = new Intent(this, Game2.class);
             goGame2.putExtra("wordObject", horizontalList);
             startActivity(goGame2);
+        }
+
+        else if (state == 2) {
+            Intent goGame3 = new Intent(this, Game3.class);
+            startActivity(goGame3);
         }
     }
 

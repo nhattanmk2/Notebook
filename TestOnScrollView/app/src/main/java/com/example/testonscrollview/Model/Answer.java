@@ -2,24 +2,13 @@ package com.example.testonscrollview.Model;
 
 public class Answer {
     String id;
-    String state;
     String word;
+    String word1;
     String meaning;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
+    public Answer (String word, String word1, String meaning) {
+        this.word = word;
+        this.word1 = word1;
+        this.meaning = meaning;
     }
 
     public String getWord() {
@@ -28,6 +17,14 @@ public class Answer {
 
     public void setWord(String word) {
         this.word = word;
+    }
+
+    public String getWord1() {
+        return word1;
+    }
+
+    public void setWord1(String word1) {
+        this.word1 = word1;
     }
 
     public String getMeaning() {

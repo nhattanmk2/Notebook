@@ -193,7 +193,7 @@
                         android:layout_height="60dp"
                         android:layout_margin="7dp"
                         app:cardCornerRadius="10dp"
-                        app:state="happy">
+                        app:state="game1">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -250,7 +250,7 @@
                         android:layout_height="60dp"
                         android:layout_margin="7dp"
                         app:cardCornerRadius="10dp"
-                        app:state="sad">
+                        app:state="game2">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -298,8 +298,8 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </com.example.testonscrollview.Effect.CustomCardView>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/game3"
+                    <com.example.testonscrollview.Effect.CustomCardView
+                        app:state="game3"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_margin="7dp"
@@ -349,7 +349,7 @@
                                     android:textSize="14dp" />
                             </LinearLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
+                    </com.example.testonscrollview.Effect.CustomCardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/game4"

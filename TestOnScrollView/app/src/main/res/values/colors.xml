@@ -13,4 +13,5 @@
     <color name="orangered">#FF4500</color>
     <color name="lime">#00FF00</color>
     <color name="palegreen">#98FB98</color>
+    <color name="night_mode">#6124B1</color>
 </resources>
