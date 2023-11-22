@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="AddToFolderViewModel"
+            type="com.example.tan.viewmodel.AddToFolderViewModel" />
+    </data>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerAdd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/createdFrg"
+                android:name="com.example.tan.fragment.CreatedFragment"
+                android:layout_width="match_parent"
+                android:layout_height="360dp" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/studiedFrg"
+                android:name="com.example.tan.fragment.StudiedFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </androidx.viewpager.widget.ViewPager>
+
+    </LinearLayout>
+
+</layout>

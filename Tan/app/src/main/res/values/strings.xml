@@ -1,0 +1,35 @@
+<resources>
+
+    <string name="app_name">Test</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="achievement">Thành tựu</string>
+    <string name="read_all">Xem tất cả</string>
+    <string name="subject">Học phần</string>
+    <string name="folder"> Thư mục </string>
+    <string name="dialog_notification_header_title"> Hoạt động </string>
+    <string name="item_subject_1">Tên học phần</string>
+    <string name="item_subject_2">Từ vựng</string>
+    <string name="item_subject_3">Mô tả</string>
+    <string name="item_folder_1">Tên thư mục</string>
+    <string name="item_folder_2">Học phần</string>
+    <string name="item_folder_3">Mô tả</string>
+    <string name="dialog_create_subject">Tạo học phần</string>
+    <string name="dialog_create_folder">Tạo thư mục</string>
+    <string name="game1_1">Thẻ ghi nhớ</string>
+    <string name="game1_2">Ôn lại các từ vựng và định nghĩa</string>
+    <string name="game2_1">Học</string>
+    <string name="game2_2">Chọn các đáp án</string>
+    <string name="game3_1">Kiểm tra</string>
+    <string name="game3_2">Beta</string>
+    <string name="game4_1">Ghép từ</string>
+    <string name="game4_2">Nối từ với máy</string>
+    <string name="subject_setting_1">Thêm vào thư mục </string>
+    <string name="subject_setting_2">Chỉnh sửa </string>
+    <string name="subject_setting_3">Chia sẻ </string>
+    <string name="subject_setting_4">Xóa học phần </string>
+    <string name="delete_dialog_1"> Bạn chắc chắc muốn xóa học phần này?</string>
+    <string name="sort_1">Sắp xếp thuật ngữ</string>
+    <string name="sort_2">Theo thứ tự mặc định</string>
+    <string name="sort_3">Theo bảng chữ cái</string>
+</resources>
